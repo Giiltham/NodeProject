@@ -1,11 +1,14 @@
 import mongoose, {Schema} from "mongoose";
 
 const goldPriceSchema = new Schema({
-    date : {
+    id : {
         type : Date,
+        required : true,
+    },
+    open : {
+        type : Number,
         required : true
     },
-    open : Number,
     high : Number,
     low : Number,
     close : Number,

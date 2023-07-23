@@ -1,10 +1,12 @@
 import bodyParser from "body-parser"
 import express from "express";
 import goldPriceRouter from "./routes/goldPrice.js"
+import authRouter from "./routes/auth.js"
 import swaggerUi from "swagger-ui-express"
 import swaggerJsDoc from "swagger-jsdoc"
 import mongoose from "mongoose";
 import * as dotenv from 'dotenv'
+import isAuth from "./middlewares/is-auth.js";
 
 async function main() {
     const app = express()
@@ -41,21 +43,13 @@ async function main() {
      * Permet d'utiliser body-parser sur les json
      */
     app.use(bodyParser.json())
-    app.use((req,res,next) => {
-        console.log("je suis dans un middleware")
-        next();
-    })
-    app.use((req,res,next) => {
-        console.log("je suis dans un autre middleware")
-        next();
-    })
 
     app.get('/', (req, res, next) => {
         res.send('Hello ESGI')
     })
 
-    app.use('/gold-price', goldPriceRouter)
-
+    app.use('/gold-prices', goldPriceRouter)
+    app.use('/auth', authRouter)
 
     try {
         await mongoose.connect(process.env.MONGODB_URI)
@@ -66,6 +60,5 @@ async function main() {
 
     app.listen(process.env.LISTEN_PORT)
 }
-
 
 main()
