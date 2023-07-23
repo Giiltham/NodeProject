@@ -2,8 +2,9 @@
 
 ## Présentation
 
-Cette API inclus un CRUD accessible de '/gold-prices', permettant d'accéder au prix journalier de l'or du 2000-01-04 au 2022-09-02.
+Cette API inclus un CRUD accessible de '/gold-prices', permettant d'accéder au prix journalier de l'or.
 Pour simplifier les appels, une doc SwaggerUI a été mise en place, accessible par '/api-docs'
+Pour remplir la base de donnée MongoDB, du 2000-01-04 au 2022-09-02, un fichier goldprices.json est à la racine du projet.
 
 Si l'auth par JWT est activé, on peux accéder aux routes de connexion par '/auth/signup' et '/auth/login'
 Puis rajouter son token d'authentification dans le header 'Authorization', cela ne fonctionnera pas avec ma document SwaggerUI
